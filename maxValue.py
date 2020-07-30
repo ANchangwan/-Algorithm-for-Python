@@ -57,4 +57,21 @@ for i in range(a,b+1):
 
 print(sum)
 
+# select_struct 최댓값 구하기(for 문)
+
+inputNum = 0
+num = []
+max = 0
+wantTocount = int(input('입력하고 싶은 수를 입력해주세요!'))
+for i in range(wantTocount):
+    inputNum = int(input('정수를 입력해주세요.: '))
+    num.append(inputNum)
+
+for k in num:
+    if max < k:
+        max = k
+
+print(f'최대값 : {max}')
+
+
 
