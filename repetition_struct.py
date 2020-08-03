@@ -6,7 +6,6 @@
 #     sum+=i
 #     i+=1
 # print(sum)
-
 # # 예제 2(for 문)
 # n = int(input('1부터 n까지의 정수를 입력해주세요'))
 # sum = 0
@@ -131,23 +130,96 @@
 
 # 예제 1
 
-print('1부터 n까지의 정수의 합을 구합니다.')
+# print('1부터 n까지의 정수의 합을 구합니다.')
 
+
+# while True:
+#     num = int(input('원하는 정수값을 입력해주세요'))
+#     if num>0:
+#         break
+#     else:
+#         print('정수를 입력해주세요')
+#         continue
+
+
+# sum = 0
+# i = 1
+
+# for i in range(1,num+1):
+#     sum+=i
+#     i+=1
+
+# print(f'1부터 {num}까지의 합은 {sum}입니다.')
+
+
+# 예제 1
+# 직사각형 넓이로  변의 길이 구하기
+# 가로, 세로 길이가 정수이고 넓이가 area인 직사각형에서 변의 길이 나열하기
+
+# area = int(input('직사각형의 넓이를 입력하세요 : '))
+
+# for i in range(1 , area +1):
+#     if i*i > area: break # 원하는 넓이를 넘어서면 for 문을 벗어남
+#     if area % i : continue # 입력한 넓이를 벗어나면 다시 반복문을 돌린다.
+#     print(f'{i}*{area//i}')
+
+# 예제2
+# 10~99 사이의 난수 n개 생성하기(13이 나오면 중단)
+
+# import random
+
+# randomNum = int(input('난수의 갯수를 입력하세요 : '))
+
+# for _ in range(randomNum):
+#     r = random.randint(10,99)
+#     print(r ,end=" ")
+#     if r == 13:
+#         print("\n난수를 종료합니다.")
+#         break
+
+# else:
+#     print("\n난수를 종료합니다.")
+
+# 예제3
+# 1~12까지 8을 건너뛰고 출력하기 1
+
+# for i in range(1,13):
+#     if i == 8:
+#         continue
+#     print(i, end = '')
+
+# print()
+# 이코드는 비효율적이다. 왜냐하면 반복문을 돌릴 때 마다 if으로 조건으로 판단해야하기 때문에 
+# 100000가지 수를 반복해야 할 때 매번 조건문을 통해서 확인을 해야해서 좋은 코드는 아니다.
+
+# 예제4
+# 1~12까지 8을 건너뛰고 출력하기 2
+
+# for i in list(range(1,8)) + list(range(9,13)):
+#     print(i, end = ' ')
+
+# print()
+
+# if문으로 일일이 확인할 필요는 없지만 list에 값을 출력해야 되는 비효율은 여전히 존재한다.
+
+
+# 예제5
+# 2 자리 양수(1~99) 입력받기1
+# 종료 조건
+
+# while True:
+#     no = int(input('2자리 양수를 입력해주세요 : '))
+#     if no >= 10 and no <=99:
+#         break
+# print(f'입력받은 수는 {no}입니다.')
+
+# 예제6 
+# 2 자리 양수(1~99) 입력받기2
+# 계속 조건
 
 while True:
-    num = int(input('원하는 정수값을 입력해주세요'))
-    if num>0:
+    no = int(input('2자리 양수를 입력해주세요 : '))
+    if not(no <10 or no >99):
         break
-    else:
-        print('정수를 입력해주세요')
-        continue
 
-
-sum = 0
-i = 1
-
-for i in range(1,num+1):
-    sum+=i
-    i+=1
-
-print(f'1부터 {num}까지의 합은 {sum}입니다.')
+print(f'입력한 2자리 정수 {no}')
