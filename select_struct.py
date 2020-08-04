@@ -18,7 +18,7 @@
 
 # 예제2
 # 최댓값
-def maxValue(a):
+def maxValue(a: Sequence) ->Any:
 
     max = a[0]
     for i in range(0,len(a)):
