@@ -1,3 +1,5 @@
+from maxValueFunc.maxValue1 import maxValue
+
 # 예제1
 # 최댓값
 
@@ -18,14 +20,7 @@
 
 # 예제2
 # 최댓값
-def maxValue(a):
 
-    max = a[0]
-    for i in range(0,len(a)):
-        if a[i]>max:
-            max = a[i]
-    
-    return max
 # if __name__ == "__main__":
     
 #     print('값을 입력해주세요')
@@ -58,18 +53,73 @@ def maxValue(a):
 # 원소값 입력받기
 
 
-print('원소값을 입력합니다.')
-print('End를 누르면 종료합니다.')
+# print('원소값을 입력합니다.')
+# print('End를 누르면 종료합니다.')
 
-number = 0
-x = []
+# number = 0
+# x = []
 
-while True:
-    num = input( '원소 값 :')
-    if num == 'End':
-        break
+# while True:
+#     num = input( f' x[{number}]원소 값 :')
+#     if num == 'End'or num =='end':
+#         break
 
-    x.append(int(num))
-    number+=1
+#     x.append(int(num))
+#     number+=1
 
-print(f'최댓값 {maxValue(x)}')
+# print(f'최댓값 {maxValue(x)}')
+
+# 예제5
+# 각 배열 원소의 최댓값을 구해서 출력하기(튜플, 문자열, 문자열리스트)
+
+# t = (4, 7, 8, 9, 15.4, 459, 55)
+# s = 'String'
+# a = ['BTS','윤유선', '창완']
+
+# print(f'최댓값 : {maxValue(t)}')
+# print(f'문자열 최댓값 : {maxValue(s)}')
+# print(f'문자열 리스트 최댓값 :{maxValue(a)}')
+
+
+# 예제6
+# 리스트의 모든 원소를 스캔하기(원소 수를 미리 파악)
+
+x = ['jone', 'meli','somi','changwan','Tom']
+
+# for i in range(len(x)):
+#     print(f'x[{i}]의 값 {x[i]}')
+
+# for i, name in enumerate(x):
+#     print(f'x[{i}] = {name}')
+
+# for i, name in enumerate(x,0):
+#     print(f'x[{i}] = {name}')
+
+# for i in x:
+#     print(i)
+
+
+# 예제7
+# 뮤터블시퀀스 원소를 역순을 정렬
+
+from typing import Any, MutableSequence
+def reversed_array(a: MutableSequence) -> None:
+    """뮤터블 시퀀스 a의 원소를 역순으로 정렬"""
+    x = len(a) # 가독성을 높이기 위해 x변수 값 선언
+    for i in range(x//2):
+        a[i],a[x-i-1] = a[x-i-1],a[i]
+    
+    return a
+
+print('원소를 역순으로 정렬합니다.')
+countNum = int(input('원소의 갯수를 입력해주세요 : '))
+num = [None]*countNum
+
+for i in range(len(num)):
+    num[i] = int(input(f'num[{i}] 입력해주세요 : '))
+
+print()
+reversed_array(num)
+# 원소를 역순으로 정렬합니다.
+for i in range(len(num)):
+    print(f'num[{i}] = {num[i]}')
