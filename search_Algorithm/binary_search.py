@@ -7,7 +7,7 @@ def bin_search(a:Sequence, key:Any) ->int:
     """시퀀스 a에서 key와 일치하는 원소를 이진검색"""
 
     front = 0           # 검색범위 맨 앞 원소의 인덱스
-    end = lan(a) - 1    # 검색범위 맨 끝 원소의 인덱스
+    end = len(a) - 1    # 검색범위 맨 끝 원소의 인덱스
 
     while True:
         middle = (front + end) // 2 # 중앙 원소 인덱스
@@ -31,8 +31,7 @@ if __name__ == "__main__":
 
     for i in range(num):
         a[i] = int(input(f'원소 a[{i}] : '))
-        if a[i] > a[i+1]:
-            a[i+1] = a[i]  
+       
     
     key = int(input('찾고싶은 원소 값 : '))
 
