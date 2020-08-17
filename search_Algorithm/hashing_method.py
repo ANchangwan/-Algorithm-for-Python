@@ -9,7 +9,7 @@ import hashlib
 
 class Node:
     """해시를 구성하는 노드"""
-    def __init__(self,key:Any, value:Any,next:Node) ->None:
+    def __init__(self, key:Any, value:Any,next:Node) ->None:
         """초기화"""
         self.key = key      #키
         self.value = value  #값
@@ -72,3 +72,14 @@ class ChaineHash:
         pp = p 
         p = p.next          # 뒤쪽 노드를 주목
         return False        # 삭제 실패(key가 존재하지 않음)
+
+    
+    def dump(self, key:Any) -> None:
+        """해시 테이블을 덤프"""
+        for i in range(self.capacity):
+            p = self.table[i]
+            while p is not None:
+                print(f'    ->{p.key}({p.value})',end="")
+                p = p.next
+
+            print()
