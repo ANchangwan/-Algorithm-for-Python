@@ -21,7 +21,7 @@ class FixedStack:
         """스택에 쌍여있는  데이터 개수를 반환"""
         return self.ptr
 
-    def is_Empty(self)->bool:
+    def is_empty(self)->bool:
         """스택이 비어있는지 판단"""
         return self.ptr<=0
 
@@ -29,4 +29,26 @@ class FixedStack:
         """스택이 가득 차있는지 판단"""
         return self.ptr>=self.capacity
 
+    def push(self, value:Any) ->None:
+        """스택에 value를 푸시(데이터를 넣음)"""
+        if self.is_full():
+            raise FixedStack.Full
+        self.stk[self.ptr] = value
+        self.ptr += 1
+
+    def pop(self)->Any:
+        """스택에 데이터를 팝(꼭대기 데이터를 꺼냄)"""
+        if self.is_empty():
+            raise FixedStack.Empty
+        self.ptr -= 1
+        return self.stk[self.ptr]
+        
+    def peek(self) ->Any:
+        """스택에서 데이터를 피크(꼭대기 데이터를 들여다봄)"""
+        if self.is_empty():
+            raise FixedStack.Empty
+        return self.stk[self.ptr-1]
+
+    def clear(self)->None:
+        self.ptr=0
         
