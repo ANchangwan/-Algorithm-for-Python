@@ -1,15 +1,14 @@
 # KMP법으로 문자열 검색하기
-
 def kmp_match(txt:str, pat:str) ->None:
     """kmp 문자열 생성"""
-    pp = 1                                  # txt 커서
-    pt = 0                                  # patten 커서
-    skip = [0] * (len(txt) + 1)             # 건너뛰기 표
+    pt = 1                                  # txt 커서
+    pp = 0                                  # patten 커서
+    skip = [0] * (len(pat) + 1)             # 건너뛰기 표
     
     # 건너뛰기 표 만들기
     skip[pt] = 0
     while pt != len(pat):
-        if txt[pp] == pat[pt]:
+        if pat[pt] == pat[pp]:
             pt+=1
             pp+=1
             skip[pt] = pp
@@ -17,16 +16,18 @@ def kmp_match(txt:str, pat:str) ->None:
             pt += 1
             skip[pt] = pp
         else:
-            pp = skip[pt]
+            pp = skip[pp]
     
     # 문자열 검색하기
     pt = pp =0
-    while pp != len(txt) and pt != len(pat):
-        if txt[pp] == pat[pt]:
+    while pt != len(txt) and pp != len(pat):
+        if txt[pt] == pat[pp]:
             pt += 1
             pp += 1
+
         elif pp == 0:
             pt += 1
+
         else:
             pp = skip[pp]
     
