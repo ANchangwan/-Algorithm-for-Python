@@ -1,7 +1,7 @@
 from enum import Enum
 from Linked_List import LinkedList
 
-Meun = Enum('Menu',['머리노드삽입','꼬리노드삽입','머리노드삭제',
+Menu = Enum('Menu',['머리노드삽입','꼬리노드삽입','머리노드삭제',
                     '꼬리노드삭제','주목노드출력','주목노드이동',
                     '주목노드삭제','모든노드삭제','검색','멤버십판단',
                     '모든노드출력','스캔','종료'])
@@ -32,7 +32,7 @@ while True:
     elif menu == Menu.꼬리노드삭제:
         lst.remove_last()
 
-    elif mnue == Menu.주목노드출력:
+    elif menu == Menu.주목노드출력:
         lst.print_current_node()
     
     elif menu == Menu.주목노드이동:
