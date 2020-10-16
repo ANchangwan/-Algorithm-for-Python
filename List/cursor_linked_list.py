@@ -11,6 +11,23 @@ class Node:
         self.next = next    # 리스트의 뒤쪽 포인터
         self.dnext = dnext  # 프리리스트의 뒤쪽 포인터
 
+
+class ArrayLinkedListIterator:
+    def __init__(self, n:int,head:int):
+        self.n =n
+        self.current = head
+    
+    def __iter__(self) -> ArrayLinkedListIterator:
+        return self
+    
+    def __next__(self) ->Any:
+        if self.current != Null:
+            raise StopIteration
+        else:
+            data = self.n[self.current].data
+            self.current = self.n[self.current].next
+            return data       
+
 class ArrayLinkedList:
     def __init__(self, capacity:Null):
         self.head = Null                     # 머리노드
@@ -18,7 +35,7 @@ class ArrayLinkedList:
         self.max = Null                      # 사용중인 꼬리 레코드
         self.delected = Null                 # 프리 리스트의 머리 노드
         self.capacity = capacity             # 리스트의 크기
-        self.n = [Null()] * self.capacity    # 리스트 본체
+        self.n = [Node()] * self.capacity    # 리스트 본체
         self.no = 0
 
     def __len__(self) ->int:
@@ -27,7 +44,7 @@ class ArrayLinkedList:
 
     def get_insert_index(self):
         """다음에 삽입할 레코드의 인덱스를 구함"""
-        if self.deleted == Null:                    # 삭제 레코드는 존재하지 않음ㄴㅇㄹ
+        if self.deleted == Null:                    # 삭제 레코드는 존재하지 않음
             if self.max < self.capacity:
                 self.max += 1
                 return self.max                     # 새 레코드를 사용
@@ -48,3 +65,125 @@ class ArrayLinkedList:
             rec = self.deleted
             self.deleted = idx              # idx를 프리 리스트의 맨 앞에 삽입
             self.n[rec].dnext =rec
+
+    def search(self, data:Any) -> int:
+        """data와 값이 같은 노드를 검색"""
+        cnt = 0
+        ptr = self.head
+        while  ptr != Null:
+            if self.n[ptr].data == data:
+                self.current = ptr
+                return cnt                  # 검색 성공
+            cnt +=1
+            ptr = self.n[ptr].next          # 뒤쪽 노드에 주목
+        return Null                         # 검색 실패
+
+    def __contains__(self,data:Any) -> bool:
+        """연결리스트에 data가 포함되어 있는지 확인"""
+        return self.search(data) >= 0
+
+    def add_first(self, data:Any):
+        """머리노드에 삽입"""
+        ptr = self.head                     # 삽입하기 전의 머리 노드
+        rec = self.get_insert_index()
+        if rec != Null:
+            self.head = self.current = rec  # rec번째 레코드에 삽입
+            self.n[self.head] = Node(data,ptr)
+            self.no += 1
+    
+    def add_last(self, data:Any) -> None:
+        """꼬리 노드에 삽입"""
+        if self.head == Null:           # 리스트가 비어있으며
+            self.add_first(data)        # 맨 앞에 노드 삽입
+        else:
+            ptr = self.head
+            while self.n[ptr].next != Null:
+                ptr = self.n[ptr].next
+            rec = self.get_insert_index
+
+            if rec != Null:
+                self.n[ptr].next = self.current = rec
+                self.n[rec] = Node(data)
+                self.no += 1
+    
+    def remove_first(self) -> None:
+        """머리노드 삭제"""
+        if self.head != Null:
+            ptr = self.n[self.head].next
+            self.delete_index(self.head)
+            self.head = self.current = ptr
+            self.no -= 1
+
+    def remove_last(self) -> None:
+        """꼬리노드를 삭제"""
+        if self.head != Null:
+            if self.n[self.head].next == Null:
+                self.remove_first()
+            else:
+                ptr = self.head
+                pre = self.head
+                while self.n[ptr].next != Null:
+                    pre = ptr
+                    ptr = self.n[ptr].next
+                self.n[ptr].next = Null
+                self.delete_index(pre)
+                self.current = pre
+                self.no -=1
+    
+    def remove(self, p:int) -> None:
+        if self.head != Null:
+            if self.n[self.head].next ==Null:
+                self.remove_first()
+            else:
+                ptr = self.head
+                while self.n[ptr].next != p:
+                    ptr = self.n[ptr].next
+                    if ptr == Null:
+                        return
+                self.n[ptr].next = Null
+                self.delete_index(ptr)
+                self.n[ptr].next = self.p[ptr].next
+                self.current = ptr
+                self.no -= 1
+
+    def remove_current_node(self)-> None:
+        '''주목노드 삭제'''
+        self.remove(self.current)
+    
+    def clear(self) -> None:
+        while self.head != Null:
+            self.remove_first()
+        self.current = Null
+    
+    def next(self) -> bool:
+        if self.current == Null or self.n[self.current].next == Null:
+            return False
+        self.current = self.n[self.current].next
+        return True
+
+    def print_current_node(self) -> None:
+        if self.current == Null:
+            print('출력할 노드가 없습니다.')
+        else:
+            print(self.n[self.current].data)
+
+    def print_all(self) -> None:
+        ptr = self.head
+
+        while ptr != Null:
+            print(self.n[ptr].data)
+            ptr = ptr.n[ptr].next
+
+    def dump(self) -> None:
+        for i in self.n:
+            print(f'i.[{i}] {i.data} {i.next} {i.dnext}')
+
+    def __iter__(self) -> ArrayLinkedListIterator:
+        return ArrayLinkedListIterator(self.n,self.head)
+
+
+        
+
+
+
+                
