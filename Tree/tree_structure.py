@@ -49,19 +49,18 @@ class BinarySearchTree:
         else:
             return add_node(self.root,key,value)
 
-    def remove(self, key:Any) -> bool:
-        """키가 key인 노드를 삭제"""
-        p = self.root
-        parent = None
-        is_left_child = True
-        while  True:
-            if p is None:                   # 더 이상 진행할 수 없으면
-                return False                # 그 키는 존재하지 않음
-            
-            if key == p.key:                # key와 노드 p의 키가 같으면
-                break                       # 검색성공
+     def remove(self,key:Any) -> bool:
+        p = self.root                        # 스캔 중인 노드
+        parent = None                        # 스캔 중인 노드의 부모노드
+        is_left_child = True                 # p는 parent의 외쪽 자식 노드인지 확인
+
+        while True:
+            if p is None:
+                return None
+            if key == p.key:
+                break
             else:
-                parent = p
+                p = parent
                 if key < p.key:
                     is_left_child = True
                     p = p.left
@@ -69,37 +68,38 @@ class BinarySearchTree:
                     is_left_child = False
                     p = p.right
         
-        if p.left is None:
+        if p.left is None:                # p에 왼쪽 자식이 없으면
             if p is self.root:
-                self.root = p.right
+                p.left = self.root        
             elif is_left_child:
-                parent.left = p.right
+                parent.left = p.right     # 부모의 오른쪽 포인터가 오른쪽 자식을 가리킴
             else:
-                parent.left = p.right
-        elif p.right is None:
+                parent.right = p.left     # 부모의 오른쪽 포인터가 오른쪽 자식을 가리킴
+        elif p.right is None:              # p에 오른쪽 자식이 없으면
             if p is self.root:
                 self.root = p.left
             elif is_left_child:
-                parent.left = p.left
+                parent.left = p.left        # 부모의 왼쪽 포인터가 왼쪽 자식을 가리킴
             else:
-                parent.right = p.left
+                parent.right = p.right      # 부모의 오른쪽 포인터가 왼쪽 자식을 가리킴
         else:
-            parent = p
-            left = p.left
-            is_left_child = True
-            while left.right is not None:
-                parent = left
-                left = left.right
+            parent = p                          
+            left = p.left                       # 서브트리 안에서 가장 큰 노드
+            is_left_child = True                
+            while left.right is not None:       # 가장 큰 노드 left를 검색
+                parent = p.left
+                left.right = p.right
                 is_left_child = False
             
-            p.key = left.key
-            p.value = left.value
+            p.key = left.key                    # left의 키를 p로 이동
+            p.value = left.value                # left의 데티러르 p로 이동
             if is_left_child:
-                parent.left = left.left
+                parent.left = left.left         # left를 삭제
             else:
-                parent.right = left.left
-        return True
+                parent.right = left.left        # left를 삭제
 
+        return True
+    
     def dump(self)-> None:
         """덤프(모든 노드를 키의 오름차순으로 출력)"""
         def print_subtree(node:Node):
