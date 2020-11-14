@@ -1,5 +1,5 @@
 from enum import Enum
-from tree import BinarySearchTree
+from tree_struct import BinarySearchTree
 
 Menu = Enum('Menu', ['삽입', '삭제','검색','출력','값의 범위','종료'])
 
