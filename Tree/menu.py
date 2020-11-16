@@ -1,11 +1,13 @@
 from enum import Enum
 from tree_struct import BinarySearchTree
 
-Menu = Enum('Menu', ['삽입', '삭제','검색','출력','값의 범위','종료'])
+
+
+Menu = Enum('Menu', ['삽입', '삭제','검색','출력','키의범위','종료'])
 
 
 def select_menu() -> Menu:
-    s = [f'{m.value} {m.name} for m in Menu']
+    s = [f'{m.value} {m.name}' for m in Menu]
     while True:
         print(*s,sep =' ',end= '')
         try:
@@ -40,12 +42,18 @@ while True:
         else:
             print('값을 찾을 수 없습니다.')
 
-    elif menu == Menu.덤프:
+    elif menu == Menu.출력:
         tree.dump()
 
     elif menu == Menu.키의범위:
-        print(f'키의 최댓값 {tree.max}')
-        print(f'키의 최솟값 {tree.min}')
+        while True:
+            try:
+                print(f'키의 최댓값 {tree.max_key}')
+                print(f'키의 최솟값 {tree.min_key}')
+            except:
+                print('다시입력해주세요')
+                break
 
     else:
         break
+
