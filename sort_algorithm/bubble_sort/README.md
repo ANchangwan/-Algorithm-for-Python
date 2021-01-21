@@ -14,7 +14,7 @@
     <li>삽입</li>
   </ol>
   <br>
-  <p>시간 복잡도 : O(n<sup>2</sup>)<br><br>단순정렬은 시간복잡도가 좋지 않기 때문에 프로그램의 효율이 좋지 않습니다.<br><br>단순 정렬 알고리즘의 개선방법 :<a href = "https://github.com/ANchangwan/-Algorithm-for-Python/tree/master/sort_algorithm/bubble_sort/shell_sort">셸 정렬<a>, 퀵정렬, 병합정렬,힙 정렬, 도수 정렬</p>
+  <p>시간 복잡도 : O(n<sup>2</sup>)<br><br>단순정렬은 시간복잡도가 좋지 않기 때문에 프로그램의 효율이 좋지 않습니다.<br><br>단순 정렬 알고리즘의 개선방법 :<a href = "https://github.com/ANchangwan/-Algorithm-for-Python/tree/master/sort_algorithm/bubble_sort/shell_sort">셸 정렬<a>, <a href = "https://github.com/ANchangwan/-Algorithm-for-Python/tree/master/sort_algorithm/bubble_sort/Quick_sort">퀵정렬<a>, 병합정렬,힙 정렬, 도수 정렬</p>
   <p>(1)안정적이지 않은 정렬알고리즘 : 버블,선택, 삽입,셸,퀵, 도수 </br> (2)안정적인 정렬 알고리즘 : heap(힙) 정렬, Merge(병합) 정렬</p>  
   
   
