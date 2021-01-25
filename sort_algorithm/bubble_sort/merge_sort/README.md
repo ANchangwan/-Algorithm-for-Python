@@ -28,3 +28,23 @@
     <li>ave : NlogN</li>
     <li>worst : NlogN</li>
   </ul>
+  
+ <h3>heapq를 이용한 merge_sort</h3>
+ <ul>
+  <li>sorted()</li>
+  <pre>
+    a = [1,2,3,4,5]
+    b = [5,7,5,6,8]
+    c = list(sorted(a + b))
+    -> a 와 b를 연결하여 오름차순으로 정렬한 것을 list로 변한하여 c에 저장
+  </pre>
+  <p>a와 b가 정렬을 마친 상태가 아니어도 적용할 수 있다는 장점이 있지만, 속도가 빠르지 않다는 단점이 있다. </p>
+  <li>heapq.merge</li>
+  <p>-> 빠르게 병합하려면 heapq모듈에 merge함수 사용</p>
+  <pre>
+    import heapq
+    a = [2,4,6,9,12,13]
+    b = [1,2,3,4,7,13,32]
+    c = list(heapq.merge(a,b))
+  </pre>
+</ul>
