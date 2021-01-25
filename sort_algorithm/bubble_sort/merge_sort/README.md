@@ -24,7 +24,7 @@
   <p>배열병합의 시간복잡도는 O(n)이다. 데이터 원소수가 n일때 병합 정렬의 단계는 logn만큼 필요하므로 전체 시간 복잡도는 O(nlogn)입니다. 병합 정렬 알고리즘은 서로 떨어져 있는 
   원소를 교환하는 것이 아니므로 안정적이다.</p>
   <ul>
-    <li>Best : Nlog0N</li>
+    <li>Best : NlogN</li>
     <li>ave : NlogN</li>
     <li>worst : NlogN</li>
   </ul>
